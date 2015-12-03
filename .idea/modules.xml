@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ZarubetskyJavaLabz.iml" filepath="$PROJECT_DIR$/ZarubetskyJavaLabz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j_lab_11/j_lab_11.iml" filepath="$PROJECT_DIR$/j_lab_11/j_lab_11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j_lab_12/j_lab_12.iml" filepath="$PROJECT_DIR$/j_lab_12/j_lab_12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j_lab_13/j_lab_13.iml" filepath="$PROJECT_DIR$/j_lab_13/j_lab_13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j_lab_14/j_lab_14.iml" filepath="$PROJECT_DIR$/j_lab_14/j_lab_14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j_lab_7/j_lab_7.iml" filepath="$PROJECT_DIR$/j_lab_7/j_lab_7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j_lab_8/j_lab_8.iml" filepath="$PROJECT_DIR$/j_lab_8/j_lab_8.iml" />
+    </modules>
+  </component>
+</project>
