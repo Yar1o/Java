@@ -35,8 +35,24 @@
         <processorPath useClasspath="true" />
         <module name="j_lab_14" />
       </profile>
+      <profile default="false" name="Annotation profile for j_lab_07" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="j_lab_07" />
+      </profile>
+      <profile default="false" name="Annotation profile for j_lab_08" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="j_lab_08" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.6">
+      <module name="j_lab_07" target="1.6" />
+      <module name="j_lab_08" target="1.6" />
       <module name="j_lab_11" target="1.5" />
       <module name="j_lab_12" target="1.5" />
       <module name="j_lab_13" target="1.5" />
