@@ -14,7 +14,7 @@ public class JVectorAdapter implements Vector{
 
     private java.util.Vector dataVector;
 
-    public JVectorAdapter(java.util.Vector utilVector){
+    public JVectorAdapter(java.util.Vector utilVector) {
         this.dataVector = utilVector;
     }
 
@@ -26,9 +26,8 @@ public class JVectorAdapter implements Vector{
     @Override
     public double getElement(int index) {
         try {
-            return (Double)dataVector.get(index);
-        }
-        catch (ArrayIndexOutOfBoundsException e){
+            return (Double) dataVector.get(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new VectorIndexOutOfBoundsException("Array index is out of array bounds");
         }
     }
@@ -36,25 +35,24 @@ public class JVectorAdapter implements Vector{
     @Override
     public void setElement(int index, double inputValue) {
         try {
-            dataVector.set(index,inputValue);
-        }
-        catch (ArrayIndexOutOfBoundsException e){
+            dataVector.set(index, inputValue);
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new VectorIndexOutOfBoundsException("Array index is out of array bounds");
         }
     }
 
     @Override
     public void mult(double inputValue) {
-        for (int i = 0; i < dataVector.size(); i++){
-            dataVector.set(i, (Double)dataVector.get(i)*inputValue);
+        for (int i = 0; i < dataVector.size(); i++) {
+            dataVector.set(i, (Double) dataVector.get(i) * inputValue);
         }
     }
 
     @Override
     public void sum(Vector inputValue) throws IncompatibleVectorSizesException {
-        if (dataVector.size() == inputValue.getSize()){
-            for (int i = 0; i < dataVector.size(); i++){
-                dataVector.set(i, (Double)dataVector.get(i) + inputValue.getElement(i));
+        if (dataVector.size() == inputValue.getSize()) {
+            for (int i = 0; i < dataVector.size(); i++) {
+                dataVector.set(i, (Double) dataVector.get(i) + inputValue.getElement(i));
             }
         } else {
             throw new IncompatibleVectorSizesException("Vector Lenght are incompatible");
@@ -69,9 +67,8 @@ public class JVectorAdapter implements Vector{
     @Override
     public void insertElement(double element, int index) {
         try {
-            dataVector.add(index,element);
-        }
-        catch (ArrayIndexOutOfBoundsException e){
+            dataVector.add(index, element);
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new VectorIndexOutOfBoundsException("Array index is out of array bounds");
         }
     }
@@ -80,8 +77,7 @@ public class JVectorAdapter implements Vector{
     public void deleteElement(int index) {
         try {
             dataVector.remove(index);
-        }
-        catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new VectorIndexOutOfBoundsException("Array index is out of array bounds");
         }
     }

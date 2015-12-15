@@ -15,6 +15,7 @@
         <module>j_lab_12</module>
         <module>j_lab_13</module>
         <module>j_lab_14</module>
+        <module>j_lab_16</module>
     </modules>
     <dependencies>
         <dependency>

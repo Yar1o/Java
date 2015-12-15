@@ -2,13 +2,10 @@ package vector.patterns.adapter;
 
 import org.junit.Before;
 import org.junit.Test;
-import vector.Vector;
-import vector.container.VectorCollection;
 import vector.exceptions.IncompatibleVectorSizesException;
 import vector.impl.ArrayVector;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by AdminY on 02.12.2015.
@@ -145,11 +142,20 @@ public class JVectorAdapterTest {
     }
 
     @Test
-    // клон не кастует.
     public void testClone() throws Exception {
-        double[] tmp = (double[])jAdapter.clone();
-        for (int i = 0; i < jAdapter.getSize(); i++){
-            System.out.println(tmp[i] + "  -equals-  " + jAdapter.getElement(i));
+        System.out.println("clone");
+        double[] original = {5.0, -2.9, 0.0, -50000, 9};
+        java.util.Vector oArray = new java.util.Vector();
+        for (int i = 0; i < original.length; i++) {
+            oArray.add(original[i]);
         }
+        JVectorAdapter instance = new JVectorAdapter(oArray);
+        JVectorAdapter result = (JVectorAdapter) instance.clone();
+        for (int i = 0; i < result.getSize(); i++) {
+            System.out.println(i + ": " + instance.getElement(i)
+                    + "  -equals-  "
+                    + result.getElement(i));
+        }
+        //assertEquals(instance,result);
     }
 }

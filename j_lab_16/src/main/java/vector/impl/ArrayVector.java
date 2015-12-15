@@ -12,36 +12,36 @@ import vector.exceptions.VectorIndexOutOfBoundsException;
 import java.io.Serializable;
 
 /**
- *
  * @author AdminY
  */
-public class ArrayVector implements Vector, Cloneable, Serializable {
-     
+public class ArrayVector implements Vector, Cloneable, Serializable{
+
     protected double[] data;
-     
+
     // конструкторы
     // конструктор по-умолчанию
-    public ArrayVector (int length) {
+    public ArrayVector(int length) {
         this.data = new double[length];
     }
 
-    public ArrayVector() {this.data = null;}
-    
+    public ArrayVector() {
+        this.data = null;
+    }
+
     /*  заполнение вектора из указанного массива   */
     public ArrayVector(double[] inputVector) {
         this.data = new double[inputVector.length];
-        for ( int i = 0; i < inputVector.length; i++) {
+        for (int i = 0; i < inputVector.length; i++) {
             this.data[i] = inputVector[i];
         }
     }
-        
+
     /*  методы  */
     /*  получение значения из вектора  */
     public double getElement(int index) {
         try {
-            return(this.data[index]);
-        }
-        catch (ArrayIndexOutOfBoundsException e){  
+            return (this.data[index]);
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new VectorIndexOutOfBoundsException("Index Out");
         }
     }
@@ -50,66 +50,69 @@ public class ArrayVector implements Vector, Cloneable, Serializable {
     public void setElement(int index, double inputValue) {
         try {
             this.data[index] = inputValue;
-        }
-        catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new VectorIndexOutOfBoundsException("Index Out");
         }
     }
 
     /*  получение размера вектора  */
     public int getSize() {
-        return this.data.length;
+        try {
+            return this.data.length;
+        } catch (NullPointerException e) {
+            return -1;
+        }
     }
 
-     /*  заполнение вектора из указанного массива   */
+    /*  заполнение вектора из указанного массива   */
     public void fillFromMass(double[] mass) {
         if (this.getSize() != mass.length) {
-            double[] newMass = new double[mass.length];
-            for (int i = 0; i < mass.length; i++) {
-		newMass[i] = mass[i];
+            data = new double[mass.length];
+
+            for (int i = 0; i < data.length; i++) {
+                data[i] = mass[i];
             }
-            this.data = newMass;
-            } else {
-                for (int i = 0; i < this.data.length; i++) {
-                    this.data[i] = mass[i];
-		        }
+        } else {
+            for (int i = 0; i < this.data.length; i++) {
+                this.data[i] = mass[i];
             }
+        }
     }
 
     /*  заполнение вектора из другого объекта этого класса  */
-    public void fillFromVector(Vector inputVector){
-	if (this.getSize() != inputVector.getSize()) {
+    public void fillFromVector(Vector inputVector) {
+        if (this.getSize() != inputVector.getSize()) {
             double[] newMass = new double[inputVector.getSize()];
             for (int i = 0; i < inputVector.getSize(); i++) {
-		newMass[i] = inputVector.getElement(i);
+                newMass[i] = inputVector.getElement(i);
             }
             this.data = newMass;
-            } else {
-                for (int i = 0; i < this.data.length; i++) {
-                    this.data[i] = inputVector.getElement(i);
-		}
+        } else {
+            for (int i = 0; i < this.data.length; i++) {
+                this.data[i] = inputVector.getElement(i);
             }
+        }
     }
 
     /*  умножение вектора на значение  */
-    public void mult (double inputValue) {
+    public void mult(double inputValue) {
         for (int i = 0; i < this.data.length; i++) {
-            this.data[i] = this.data[i]*inputValue;
+            this.data[i] = this.data[i] * inputValue;
         }
     }
 
     /*  сложение векторов поэлементно */
-    public void sum(Vector summandVector) throws IncompatibleVectorSizesException{
-        if (summandVector.getSize() == this.getSize()){
-            for (int i = 0; i < this.data.length; i++){
-            this.data[i] = this.data[i] + summandVector.getElement(i);
+    public void sum(Vector summandVector) throws IncompatibleVectorSizesException {
+        if (summandVector.getSize() == this.getSize()) {
+            for (int i = 0; i < this.data.length; i++) {
+                this.data[i] = this.data[i] + summandVector.getElement(i);
             }
         } else {
             throw new IncompatibleVectorSizesException("Sum");
         }
-    }   
-     
-    public void addElement (double inputValue){
+    }
+
+    public void addElement(double inputValue) {
         double[] NewMass = new double[this.data.length + 1];
         System.arraycopy(this.data, 0, NewMass, 0, this.data.length);
         NewMass[this.data.length] = inputValue;
@@ -142,8 +145,8 @@ public class ArrayVector implements Vector, Cloneable, Serializable {
         }
         this.data = newMass;
     }
-    
-    public String toString () {
+
+    public String toString() {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < this.data.length; i++) {
             s.append(Double.toString(this.data[i]));
@@ -151,35 +154,33 @@ public class ArrayVector implements Vector, Cloneable, Serializable {
         }
         return s.toString().trim();
     }
-        
-    public boolean equals (Object obj) {
-        if (obj instanceof Vector ) {
+
+    public boolean equals(Object obj) {
+        if (obj instanceof Vector) {
             Vector tmp = (Vector) obj;
             if (tmp.getSize() == this.data.length) {
-                for (int i = 0; i < this.data.length; i++){
+                for (int i = 0; i < this.data.length; i++) {
                     if (tmp.getElement(i) != this.data[i]) {
                         return false;
                     }
                 }
-            return true;
+                return true;
             } else {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    public Object clone () {            
+    public Object clone() {
         ArrayVector obj = null;
-        try{
+        try {
             obj = (ArrayVector) super.clone();
             obj.data = new double[this.getSize()];
             obj.fillFromVector(this);
-        }
-        catch (CloneNotSupportedException e){
-            return obj;   
+        } catch (CloneNotSupportedException e) {
+            return obj;
         }
         return obj;
     }

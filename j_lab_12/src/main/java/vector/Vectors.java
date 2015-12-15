@@ -80,7 +80,7 @@ public class Vectors {
         ArrayVector arr = new ArrayVector(size);
         for (int i = 0; i < size; i++) {                   
             st.nextToken();
-            arr.setElement(i,(double)st.nval); 
+            arr.setElement(i, st.nval);
         }
         return arr;        
     }
@@ -89,19 +89,19 @@ public class Vectors {
             throws vector.exceptions.IncompatibleVectorSizesException, IOException,ClassNotFoundException{
 
         double[] students = { 1.3, 2.8, 3.4, 4.1, 5.3, 6.6 };
-	ArrayVector vect = new ArrayVector(students.length);
-	vect.fillFromMass(students);
-		
-	DataOutputStream out1 = new DataOutputStream(new FileOutputStream("students.bin"));
-        outputVector(vect, out1);
-	out1.close();
+        ArrayVector vect = new ArrayVector(students.length);
+        vect.fillFromMass(students);
 
-	PrintWriter out2 = new PrintWriter(new BufferedWriter(new FileWriter("out1.txt")));
-	writeVector(vect, out2);
-	out2.close();
-		
-	BufferedReader in1 = new BufferedReader(new FileReader("out1.txt"));
-	System.out.println("Read from text file:            "+readVector(in1));
+        DataOutputStream out1 = new DataOutputStream(new FileOutputStream("students.bin"));
+        outputVector(vect, out1);
+        out1.close();
+
+        PrintWriter out2 = new PrintWriter(new BufferedWriter(new FileWriter("out1.txt")));
+        writeVector(vect, out2);
+        out2.close();
+
+        BufferedReader in1 = new BufferedReader(new FileReader("out1.txt"));
+        System.out.println("Read from text file:            " + readVector(in1));
         in1.close();
         
         InputStream in2 = new FileInputStream("students.bin");

@@ -25,6 +25,7 @@
         <module name="j_lab_11" />
         <module name="j_lab_12" />
         <module name="j_lab_13" />
+        <module name="j_lab_16" />
         <module name="j_lab_7" />
         <module name="j_lab_8" />
       </profile>
@@ -50,15 +51,14 @@
         <module name="j_lab_08" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.6">
+    <bytecodeTargetLevel target="1.7">
       <module name="j_lab_07" target="1.6" />
       <module name="j_lab_08" target="1.6" />
       <module name="j_lab_11" target="1.5" />
       <module name="j_lab_12" target="1.5" />
       <module name="j_lab_13" target="1.5" />
       <module name="j_lab_14" target="1.6" />
-      <module name="j_lab_7" target="1.5" />
-      <module name="j_lab_8" target="1.5" />
+      <module name="j_lab_16" target="1.5" />
       <module name="ZarubetskyJavaLabz" target="1.5" />
     </bytecodeTargetLevel>
   </component>

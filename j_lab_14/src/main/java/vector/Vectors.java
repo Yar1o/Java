@@ -4,9 +4,8 @@ package vector;/*
  * and open the template in the editor.
  */
 
-import vector.impl.ArrayVector;
-import vector.impl.LinkedListVector;
 import vector.patterns.adapter.JVectorAdapter;
+import vector.patterns.adapter.ProtectedVector;
 import vector.patterns.factory.FactoryOfArrayVector;
 import vector.patterns.factory.VectorFactory;
 
@@ -23,13 +22,8 @@ public class Vectors {
      *
      * @author netcracker
      */
-    public static Vector getAdaptedJVector(java.util.Vector jVector){
-        JVectorAdapter adapter = new JVectorAdapter(jVector);
-        return adapter;
-    }
 
     /**
-     *
      * Реализация фабрики Vector
      */
     private static VectorFactory vectorFactory = new FactoryOfArrayVector();
@@ -113,65 +107,24 @@ public class Vectors {
         Vector arr = createInstance(size); //new ArrayVector(size);
         for (int i = 0; i < size; i++) {                   
             st.nextToken();
-            arr.setElement(i,(double)st.nval); 
+            arr.setElement(i, st.nval);
         }
         return arr;        
     }
 
 
-
-    public static void main(String[] args) 
-            throws vector.exceptions.IncompatibleVectorSizesException, IOException,ClassNotFoundException{
-
-        double[] students = { 1.3, 2.8, 3.4, 4.1, 5.3, 6.6 };
-
-        Vector vect = createInstance(students.length);
-        //ArrayVector vect = new ArrayVector(students.length);
-	    vect.fillFromMass(students);
-		
-	    DataOutputStream out1 = new DataOutputStream(new FileOutputStream("students.bin"));
-        outputVector(vect, out1);
-	    out1.close();
-
-        PrintWriter out2 = new PrintWriter(new BufferedWriter(new FileWriter("out1.txt")));
-        writeVector(vect, out2);
-        out2.close();
-		
-        BufferedReader in1 = new BufferedReader(new FileReader("out1.txt"));
-        System.out.println("Read from text file:            "+readVector(in1));
-        in1.close();
-        
-        InputStream in2 = new FileInputStream("students.bin");
-        System.out.println("Read from binary file:          "+inputVector(in2));
-        in2.close();
-                
-        // ArrayVector serialization
-        // Test serialization
-        ObjectOutputStream out3 = new ObjectOutputStream(new FileOutputStream("out.bin"));
-        out3.writeObject(vect);
-        out3.close();
-        System.out.println("Serialization of ArrayVector:   " + vect.toString());
-        
-        // Test deserialization
-        ObjectInputStream in3 = new ObjectInputStream(new FileInputStream("out.bin"));
-        vect = (ArrayVector) in3.readObject();
-        in3.close();
-        System.out.println("Deserialization of ArrayVector: " + vect.toString());
-        
-        // LinkedListVector serialization
-        LinkedListVector lvect = new LinkedListVector();
-	    lvect.fillFromMass(students);
-        
-        // Test serialization
-        ObjectOutputStream out4 = new ObjectOutputStream(new FileOutputStream("out2.bin"));
-        out4.writeObject(lvect);
-        out4.close();
-        System.out.println("Serialization of LinkedListVector:  " + lvect.toString());
-        
-        // Test deserialization
-        ObjectInputStream in4 = new ObjectInputStream(new FileInputStream("out2.bin"));
-        lvect = (LinkedListVector) in4.readObject();
-        in4.close();
-        System.out.println("Deserialization of LinkedListVector:" + lvect.toString());
+    /**
+     * - Преобразование util.Vector в Vector
+     */
+    public static Vector getAdaptedJVector(java.util.Vector jVector) {
+        return new JVectorAdapter(jVector);
     }
+
+    /**
+     * - Преобразование Vector в вектор с защитой от записи.
+     */
+    public static Vector getProtectedVector(Vector inputVector) {
+        return new ProtectedVector(inputVector);
+    }
+
 }
